@@ -1,9 +1,10 @@
-package com.nevantia.weatherapp.ui
+package com.nevantia.weatherapp.ui.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import com.nevantia.weatherapp.ForecastListAdapter
 import com.nevantia.weatherapp.R
 import com.nevantia.weatherapp.domain.commands.RequestForecastCommand
@@ -19,13 +20,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val forecastList: RecyclerView  = find(R.id.forecast_list)
+        val forecastList: RecyclerView = find(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this)
 
         async() {
             val result = RequestForecastCommand("94043").execute()
 
             uiThread {
+
+                Log.i("Datos-Recibidos", result.toString())
                 forecastList.adapter = ForecastListAdapter(result)
             }
         }
