@@ -8,8 +8,10 @@ import android.util.Log
 import com.nevantia.weatherapp.ForecastListAdapter
 import com.nevantia.weatherapp.R
 import com.nevantia.weatherapp.domain.commands.RequestForecastCommand
+import com.nevantia.weatherapp.domain.model.Forecast
 import org.jetbrains.anko.async
 import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 
@@ -29,7 +31,12 @@ class MainActivity : AppCompatActivity() {
             uiThread {
 
                 Log.i("Datos-Recibidos", result.toString())
-                forecastList.adapter = ForecastListAdapter(result)
+                forecastList.adapter = ForecastListAdapter(result,
+                         object : ForecastListAdapter.OnItemClickListener{
+                                override fun invoke(forecast: Forecast) {
+                                    toast(forecast.date)
+                     }
+                 })
             }
         }
 
