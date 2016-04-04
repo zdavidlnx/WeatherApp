@@ -56,8 +56,4 @@ class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Foreca
         }
 
     }
-
-    interface OnItemClickListener {
-        operator fun invoke(forecast: Forecast)
-    }
 }
