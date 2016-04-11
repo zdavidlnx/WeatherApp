@@ -8,7 +8,7 @@ import com.nevantia.weatherapp.domain.model.ForecastList
  * Created by d_garcia on 23/03/2016.
  */
 
-class RequestForecastCommand(val zipCode: String): Command<ForecastList>{
+class RequestForecastCommand(private val zipCode: String): Command<ForecastList>{
     override fun execute(): ForecastList {
 
         val forecastRequest = ForecastRequest(zipCode)
